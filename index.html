@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Electricity Bill Calculator</h1>
+        <form id="billForm">
+            <h2>Select Calculation Method:</h2>
+            <div class="form-group">
+                <input type="radio" id="powerMethod" name="method" value="power" checked>
+                <label for="powerMethod">Power-based (e.g., Watt, kW)</label>
+            </div>
+            <div class="form-group">
+                <input type="radio" id="voltCurrentMethod" name="method" value="voltCurrent">
+                <label for="voltCurrentMethod">Voltage & Current-based</label>
+            </div>
+
+            <!-- Power-based Inputs -->
+            <div id="powerInputs" class="form-group">
+                <label for="power">Power:</label>
+                <input type="number" id="power" placeholder="Enter power value" required>
+                <select id="powerUnit">
+                    <option value="Watt">Watt (W)</option>
+                    <option value="kW">Kilowatt (kW)</option>
+                    <option value="MW">Megawatt (MW)</option>
+                    <option value="mW">Milliwatt (mW)</option>
+                    <option value="HP">Horsepower (HP)</option>
+                </select>
+            </div>
+
+            <!-- Voltage & Current Inputs -->
+            <div id="voltCurrentInputs" class="hidden">
+                <label for="voltage">Voltage:</label>
+                <input type="number" id="voltage" placeholder="Enter voltage value">
+                <select id="voltageUnit">
+                    <option value="V">Volt (V)</option>
+                    <option value="kV">Kilovolt (kV)</option>
+                    <option value="mV">Millivolt (mV)</option>
+                </select>
+
+                <label for="current">Current:</label>
+                <input type="number" id="current" placeholder="Enter current value">
+                <select id="currentUnit">
+                    <option value="A">Ampere (A)</option>
+                    <option value="mA">Milliampere (mA)</option>
+                </select>
+            </div>
+
+            <!-- Time Input -->
+            <div class="form-group">
+                <label for="time">Time per Day:</label>
+                <input type="number" id="time" placeholder="Enter time per day" required>
+                <select id="timeUnit">
+                    <option value="hours">Hours</option>
+                    <option value="minutes">Minutes</option>
+                </select>
+            </div>
+
+            <!-- Rate Input -->
+            <div class="form-group">
+                <label for="rate">Rate (per kWh):</label>
+                <input type="number" id="rate" placeholder="Enter rate" required>
+            </div>
+            <button type="button" id="calculateBtn">Calculate</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
