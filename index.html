@@ -4,27 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electricity Bill Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <h1>Electricity Bill Calculator</h1>
-        <form id="billForm">
-            <h2>Select Calculation Method:</h2>
-            <div class="form-group">
-                <input type="radio" id="powerMethod" name="method" value="power" checked>
-                <label for="powerMethod">Power-based (e.g., Watt, kW)</label>
-            </div>
-            <div class="form-group">
-                <input type="radio" id="voltCurrentMethod" name="method" value="voltCurrent">
-                <label for="voltCurrentMethod">Voltage & Current-based</label>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+    <div class="container max-w-md w-full bg-white rounded-lg shadow-lg p-6">
+        <h1 class="text-2xl font-bold text-gray-800 text-center mb-6">Electricity Bill Calculator</h1>
+        <h3 class="font-bold text-gray-900 text-purple-400 text-center mb-4">Md Babla Islam</h3>
+        <form id="billForm" class="space-y-4">
+            <h2 class="text-md text-blue-700 font-bold text-center">Please Select A Calculation Method:</h2>
+            <div class="space-y-2">
+                <div class="flex items-center">
+                    <input type="radio" id="powerMethod" name="method" value="power" checked
+                           class="w-4 h-4 text-blue-600">
+                    <label for="powerMethod" class="ml-2 text-sm text-gray-700">Power-based (e.g., Watt, kW)</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="voltCurrentMethod" name="method" value="voltCurrent"
+                           class="w-4 h-4 text-blue-600">
+                    <label for="voltCurrentMethod" class="ml-2 text-sm text-gray-700">Voltage & Current-based</label>
+                </div>
             </div>
 
             <!-- Power-based Inputs -->
-            <div id="powerInputs" class="form-group">
-                <label for="power">Power:</label>
-                <input type="number" id="power" placeholder="Enter power value" required>
-                <select id="powerUnit">
+            <div id="powerInputs" class="space-y-3">
+                <label for="power" class="block text-sm font-medium text-gray-700">Power:</label>
+                <input type="number" id="power" placeholder="Enter power value" required
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <select id="powerUnit" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="Watt">Watt (W)</option>
                     <option value="kW">Kilowatt (kW)</option>
                     <option value="MW">Megawatt (MW)</option>
@@ -34,41 +40,52 @@
             </div>
 
             <!-- Voltage & Current Inputs -->
-            <div id="voltCurrentInputs" class="hidden">
-                <label for="voltage">Voltage:</label>
-                <input type="number" id="voltage" placeholder="Enter voltage value">
-                <select id="voltageUnit">
-                    <option value="V">Volt (V)</option>
-                    <option value="kV">Kilovolt (kV)</option>
-                    <option value="mV">Millivolt (mV)</option>
-                </select>
-
-                <label for="current">Current:</label>
-                <input type="number" id="current" placeholder="Enter current value">
-                <select id="currentUnit">
-                    <option value="A">Ampere (A)</option>
-                    <option value="mA">Milliampere (mA)</option>
-                </select>
+            <div id="voltCurrentInputs" class="hidden space-y-3">
+                <div class="space-y-3">
+                    <label for="voltage" class="block text-sm font-medium text-gray-700">Voltage:</label>
+                    <input type="number" id="voltage" placeholder="Enter voltage value"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="voltageUnit" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="V">Volt (V)</option>
+                        <option value="kV">Kilovolt (kV)</option>
+                        <option value="mV">Millivolt (mV)</option>
+                    </select>
+                </div>
+                <div class="space-y-3">
+                    <label for="current" class="block text-sm font-medium text-gray-700">Current:</label>
+                    <input type="number" id="current" placeholder="Enter current value"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="currentUnit" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="A">Ampere (A)</option>
+                        <option value="mA">Milliampere (mA)</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Time Input -->
-            <div class="form-group">
-                <label for="time">Time per Day:</label>
-                <input type="number" id="time" placeholder="Enter time per day" required>
-                <select id="timeUnit">
+            <div class="space-y-3">
+                <label for="time" class="block text-sm font-medium text-gray-700">Time per Day:</label>
+                <input type="number" id="time" placeholder="Enter time per day" required
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <select id="timeUnit" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="hours">Hours</option>
                     <option value="minutes">Minutes</option>
                 </select>
             </div>
 
             <!-- Rate Input -->
-            <div class="form-group">
-                <label for="rate">Rate (per kWh):</label>
-                <input type="number" id="rate" placeholder="Enter rate" required>
+            <div class="space-y-3">
+                <label for="rate" class="block text-sm font-medium text-gray-700">Rate (per kWh):</label>
+                <input type="number" id="rate" placeholder="Enter rate" required
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
-            <button type="button" id="calculateBtn">Calculate</button>
+
+            <button type="button" id="calculateBtn" 
+                    class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                Calculate
+            </button>
         </form>
-        <div id="result"></div>
+        <div id="result" class="mt-6 space-y-2 text-gray-700"></div>
     </div>
     <script src="script.js"></script>
 </body>
