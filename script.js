@@ -11,6 +11,41 @@ function debounce(func, wait) {
     };
 }
 
+// Add dark mode toggle functionality at the top of the file
+function initDarkMode() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const html = document.documentElement;
+    
+    // Check for saved user preference, default to light mode
+    const darkMode = localStorage.getItem('darkMode') === 'enabled';
+    
+    // Set initial state
+    if (darkMode) {
+        html.classList.add('dark');
+    } else {
+        html.classList.remove('dark');
+    }
+    
+    // Update toggle button icon based on mode
+    const updateIcon = (isDark) => {
+        darkModeToggle.innerHTML = isDark ? 
+            '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>' :
+            '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>';
+    };
+    
+    // Set initial icon
+    updateIcon(darkMode);
+    
+    darkModeToggle.addEventListener('click', () => {
+        const isDark = html.classList.toggle('dark');
+        localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        updateIcon(isDark);
+    });
+}
+
+// Call initDarkMode immediately
+initDarkMode();
+
 document.getElementById("calculateBtn").addEventListener("click", calculateBill);
 
 // Toggle between input methods
@@ -156,31 +191,31 @@ function calculateBill() {
 
     // Display results
     resultDiv.innerHTML = `
-        <div class="space-y-3 bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-purple-200/50">
-            <h3 class="text-xl font-semibold text-purple-800 mb-4">Calculation Results</h3>
-            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 rounded-lg transition-colors">
-                <span class="font-medium text-purple-700">Daily Energy:</span>
-                <span class="text-pink-600 font-semibold">${dailyEnergy.toFixed(2)} kWh</span>
+        <div class="space-y-3 bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm p-6 rounded-xl border border-purple-200/50 dark:border-purple-400/20">
+            <h3 class="text-xl font-semibold text-purple-800 dark:text-purple-300 mb-4">Calculation Results</h3>
+            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 dark:hover:bg-purple-900/30 rounded-lg transition-colors">
+                <span class="font-medium text-purple-700 dark:text-purple-300">Daily Energy:</span>
+                <span class="text-pink-600 dark:text-pink-400 font-semibold">${dailyEnergy.toFixed(2)} kWh</span>
             </p>
-            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 rounded-lg transition-colors">
-                <span class="font-medium text-purple-700">Hourly Cost:</span>
-                <span class="text-pink-600 font-semibold">$${hourlyCost.toFixed(2)}</span>
+            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 dark:hover:bg-purple-900/30 rounded-lg transition-colors">
+                <span class="font-medium text-purple-700 dark:text-purple-300">Hourly Cost:</span>
+                <span class="text-pink-600 dark:text-pink-400 font-semibold">$${hourlyCost.toFixed(2)}</span>
             </p>
-            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 rounded-lg transition-colors">
-                <span class="font-medium text-purple-700">Cost Per Minute:</span>
-                <span class="text-pink-600 font-semibold">$${minuteCost.toFixed(4)}</span>
+            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 dark:hover:bg-purple-900/30 rounded-lg transition-colors">
+                <span class="font-medium text-purple-700 dark:text-purple-300">Cost Per Minute:</span>
+                <span class="text-pink-600 dark:text-pink-400 font-semibold">$${minuteCost.toFixed(4)}</span>
             </p>
-            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 rounded-lg transition-colors">
-                <span class="font-medium text-purple-700">Daily Cost:</span>
-                <span class="text-pink-600 font-semibold">$${dailyCost.toFixed(2)}</span>
+            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 dark:hover:bg-purple-900/30 rounded-lg transition-colors">
+                <span class="font-medium text-purple-700 dark:text-purple-300">Daily Cost:</span>
+                <span class="text-pink-600 dark:text-pink-400 font-semibold">$${dailyCost.toFixed(2)}</span>
             </p>
-            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 rounded-lg transition-colors">
-                <span class="font-medium text-purple-700">Monthly Cost:</span>
-                <span class="text-pink-600 font-semibold">$${monthlyCost.toFixed(2)}</span>
+            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 dark:hover:bg-purple-900/30 rounded-lg transition-colors">
+                <span class="font-medium text-purple-700 dark:text-purple-300">Monthly Cost:</span>
+                <span class="text-pink-600 dark:text-pink-400 font-semibold">$${monthlyCost.toFixed(2)}</span>
             </p>
-            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 rounded-lg transition-colors">
-                <span class="font-medium text-purple-700">Yearly Cost:</span>
-                <span class="text-pink-600 font-semibold">$${yearlyCost.toFixed(2)}</span>
+            <p class="flex justify-between items-center p-2 hover:bg-purple-50/50 dark:hover:bg-purple-900/30 rounded-lg transition-colors">
+                <span class="font-medium text-purple-700 dark:text-purple-300">Yearly Cost:</span>
+                <span class="text-pink-600 dark:text-pink-400 font-semibold">$${yearlyCost.toFixed(2)}</span>
             </p>
         </div>
     `;
